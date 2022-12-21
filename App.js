@@ -3,6 +3,7 @@ import {View,TouchableOpacity,Text,SafeAreaView} from 'react-native';
 import styles from './style';
 import { firstRow,secondRow,thirdRow,fourthRow } from './Arr';
 import * as math from 'mathjs';
+import Feather from 'react-native-vector-icons/Feather';
 
 const App = () => {
   const [title,setTitle] = useState('');
@@ -11,6 +12,9 @@ const App = () => {
     if(txt === '=') {
       setTitle(math.evaluate(title));
     } 
+    else if(txt ==='DEL') {
+      setTitle(title.substring(0,title.length-1));
+    }
     else if(txt ==='CLR') {
       setTitle('');
     }
@@ -40,11 +44,17 @@ const App = () => {
         <Text style={styles.textRes} >{title}</Text>
       </View>
 
+      <View style={styles.newRow}>
+        <TouchableOpacity onPress={() => handleClick("DEL")} >
+          <Feather name='delete' size={30} color={'#68B984'} /> 
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.row}>
         {firstRow.map((btn => {
           return(
-            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={btn.txt === "=" ? styles.buttonGreen : styles.button}>
-            <Text style={btn.txt === "=" ? styles.textWhite : styles.text}>{btn.txt}</Text>
+            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={styles.button}>
+            <Text style={btn.txt === "X" ? styles.textGreen : styles.text}>{btn.txt}</Text>
           </TouchableOpacity>
           )
         }))}
@@ -73,8 +83,8 @@ const App = () => {
       <View style={styles.row}>
         {fourthRow.map((btn => {
           return(
-            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={styles.button}>
-            <Text style={btn.txt === "CLR" ? styles.textRed : btn.txt === "X" || btn.txt === "/" ? styles.textGreen : styles.text}>{btn.txt}</Text>
+            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={btn.txt === "=" ? styles.buttonGreen : styles.button}>
+            <Text style={btn.txt === "CLR" ? styles.textRed : btn.txt === "=" ? styles.textWhite : btn.txt === "/" ? styles.textGreen : styles.text}>{btn.txt}</Text>
           </TouchableOpacity>
           )
         }))}

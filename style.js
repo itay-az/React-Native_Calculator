@@ -1,9 +1,17 @@
 import { StyleSheet } from "react-native";
 
+export const colors= {
+  green:'#68B984',
+  white:'#fff',
+  red:'#fa1e3c',
+  black:'#000',
+  lightGray:'#E5E4E2'
+};
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.white,
         paddingHorizontal:10,
         paddingTop:20,
         alignItems: 'center',
@@ -20,7 +28,7 @@ const styles = StyleSheet.create({
       },
 
       text:{
-        color:'#000',
+        color:colors.black,
         fontSize:24,
         justifyContent:'center',
         alignItems:'center',
@@ -31,10 +39,11 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'30%',
         flexDirection:'column',
-        backgroundColor:'#fff'
+        paddingTop:25,
+        backgroundColor:colors.white
       },
       textRes:{
-        color:'#000',
+        color:colors.black,
         display:'flex',
         alignItems:'flex-end',
         fontSize:48
@@ -43,48 +52,58 @@ const styles = StyleSheet.create({
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
-        width:'25%',
+        width:'18%',
         height:'60%',
-        borderRadius:30,
-        backgroundColor:'#E5E4E2'
+        borderRadius:50,
+        backgroundColor:colors.lightGray
       },
       buttonGreen:{
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
-        width:'25%',
+        width:'18%',
         height:'60%',
         borderRadius:30,
-        backgroundColor:'#68B984'
+        backgroundColor:colors.green
       },
       textRed:{
-        color:'#fa1e3c',
+        color:colors.red,
         fontSize:24,
         justifyContent:'center',
         alignItems:'center',
       },
       textGreen:{
-        color:'#68B984',
+        color:colors.green,
+        fontWeight:'bold',
         fontSize:30,
         justifyContent:'center',
         alignItems:'center',
       },
       textWhite:{
-        color:'#fff',
+        color:colors.white,
         fontSize:30,
         justifyContent:'center',
         alignItems:'center',
+        fontWeight:'bold',
+      },
+      deleteBtn:{
+          display:'flex',
+          justifyContent:'flex-end',
+          alignItems:'flex-end',
+          borderWidth:1,
+          borderColor:'#000'
+      },
+      newRow:{
+        display:'flex',
+        width:'100%',
+        height:'5%',
+        alignItems:'flex-end',
+        paddingHorizontal:30
       }
 
 
 
 });
 
-
-const colors= {
-  green:'#68B984',
-  white:'#fff',
-  red:'#fa1e3c'
-}
 
 export default styles;
