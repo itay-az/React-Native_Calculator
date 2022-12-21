@@ -9,10 +9,8 @@ const App = () => {
   const [ans,setAns] = useState(null);
 
   const handleClick = (txt) => {
-    console.log()
     if(txt === '=') {
-      setAns(math.evaluate(title));
-      setTitle(ans);
+      setTitle(math.evaluate(title));
     } 
     else if(txt ==='CLR') {
       setTitle('');
@@ -38,11 +36,9 @@ const App = () => {
 
   return (
     <View style={styles.container}>
+
       <View style={styles.resultRow}>
         <Text style={styles.text} >{title}</Text>
-      </View>
-      <View style={styles.resultRow}>
-        <Text style={styles.text} >{ans}</Text>  
       </View>
 
       <View style={styles.row}>
