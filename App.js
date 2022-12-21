@@ -1,12 +1,11 @@
 import React, {useState} from 'react';
-import {View,TouchableOpacity,Text} from 'react-native';
+import {View,TouchableOpacity,Text,SafeAreaView} from 'react-native';
 import styles from './style';
 import { firstRow,secondRow,thirdRow,fourthRow } from './Arr';
 import * as math from 'mathjs';
 
 const App = () => {
   const [title,setTitle] = useState('');
-  const [ans,setAns] = useState(null);
 
   const handleClick = (txt) => {
     if(txt === '=') {
@@ -21,8 +20,8 @@ const App = () => {
     else if(txt ==='-') {
       setTitle(title + txt);
     }
-    else if(txt ==='*') {
-      setTitle(title + txt);
+    else if(txt ==='X') {
+      setTitle(title + '*');
     }
     else if(txt ==='/') {
       setTitle(title + txt);
@@ -35,50 +34,53 @@ const App = () => {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
 
       <View style={styles.resultRow}>
-        <Text style={styles.text} >{title}</Text>
+        <Text style={styles.textRes} >{title}</Text>
       </View>
 
       <View style={styles.row}>
         {firstRow.map((btn => {
           return(
-            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={styles.btn}>
-            <Text style={styles.text}>{btn.txt}</Text>
-          </TouchableOpacity>
-          )
-        }))}
-      </View>
-      <View style={styles.row}>
-        {secondRow.map((btn => {
-          return(
-            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={styles.btn}>
-            <Text style={styles.text}>{btn.txt}</Text>
-          </TouchableOpacity>
-          )
-        }))}
-      </View>
-      <View style={styles.row}>
-        {thirdRow.map((btn => {
-          return(
-            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={styles.btn}>
-            <Text style={styles.text}>{btn.txt}</Text>
-          </TouchableOpacity>
-          )
-        }))}
-      </View>
-      <View style={styles.row}>
-        {fourthRow.map((btn => {
-          return(
-            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={styles.btn}>
-            <Text style={styles.text}>{btn.txt}</Text>
+            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={btn.txt === "=" ? styles.buttonGreen : styles.button}>
+            <Text style={btn.txt === "=" ? styles.textWhite : styles.text}>{btn.txt}</Text>
           </TouchableOpacity>
           )
         }))}
       </View>
 
-    </View>
+      <View style={styles.row}>
+        {secondRow.map((btn => {
+          return(
+            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={styles.button}>
+            <Text style={btn.txt === "+" ? styles.textGreen : styles.text}>{btn.txt}</Text>
+          </TouchableOpacity>
+          )
+        }))}
+      </View>
+
+      <View style={styles.row}>
+        {thirdRow.map((btn => {
+          return(
+            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={styles.button}>
+            <Text style={btn.txt === "-" ? styles.textGreen : styles.text}>{btn.txt}</Text>
+          </TouchableOpacity>
+          )
+        }))}
+      </View>
+
+      <View style={styles.row}>
+        {fourthRow.map((btn => {
+          return(
+            <TouchableOpacity onPress={() => handleClick(btn.txt)} style={styles.button}>
+            <Text style={btn.txt === "CLR" ? styles.textRed : btn.txt === "X" || btn.txt === "/" ? styles.textGreen : styles.text}>{btn.txt}</Text>
+          </TouchableOpacity>
+          )
+        }))}
+      </View>
+
+    </SafeAreaView>
   )
 }
 
